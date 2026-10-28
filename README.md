@@ -19,7 +19,9 @@ Run:
 gradlew runData
 
 ## License
-All Rights Reserved
+
+GNU Lesser General Public License v2.1 - see [LICENSE](LICENSE).
+Copyright (c) 2026 Bitwise Madness.
 
 ## AI disclosure
 
