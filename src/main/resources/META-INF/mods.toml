@@ -8,6 +8,11 @@ version="1.0.0"
 displayName="Potion Packs"
 description="Registers potions for existing effects from external folder or zip packs. Packs are loaded from the instance root potionpacks folder and read definitions from /data/potionpacks/potions/*.json."
 
+[modproperties.potionpacks]
+# Optional: background texture for this mod's Configured config screen (see the
+# In-game config editing section of README.md). Any existing texture works.
+configuredBackground = "minecraft:textures/block/stone.png"
+
 [[dependencies.potionpacks]]
 modId="forge"
 mandatory=true
