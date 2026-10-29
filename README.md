@@ -1,21 +1,17 @@
 # Potion Packs
 
-Potion Packs is a data-driven Forge mod for Minecraft 1.20.1 that dynamically registers potions from external JSON packs.
+Potion Packs is a data-driven Forge mod for Minecraft 1.20.1. It dynamically registers potions from external JSON packs.
 
 ## Features
-- External folder/zip loading
-- Conditional potion generation
-- Support for modded effects
-- Datapack-like workflow
+- Loads packs from external folders and zips
+- Potions are generated conditionally
+- Supports modded effects
+- Follows a datapack-like workflow
 
 ## Folder Structure
 .minecraft/potionpacks/\<pack\>/data/potionpacks/potions/*.json
 
-## Usage
-Place JSON files in the correct directory and launch the game.
-
 ## Development
-Run:
 gradlew runData
 
 ## License
