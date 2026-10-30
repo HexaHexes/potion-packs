@@ -1,22 +1,22 @@
 package org.bitwisemadness.potionpacks.client.resources;
 
-import org.bitwisemadness.potionpacks.PotionPacksMod;
-import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackResources;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.metadata.MetadataSectionSerializer;
-import net.minecraft.server.packs.resources.IoSupplier;
-import org.jetbrains.annotations.Nullable;
-
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Set;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackResources;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.MetadataSectionSerializer;
+import net.minecraft.server.packs.resources.IoSupplier;
+import org.bitwisemadness.potionpacks.PotionPacksMod;
+import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
+import org.jetbrains.annotations.Nullable;
 
 public class PotionLangPackResources implements PackResources {
 	private final String packId;
@@ -70,7 +70,7 @@ public class PotionLangPackResources implements PackResources {
 			String sectionName = deserializer.getMetadataSectionName();
 			if (json.has(sectionName)) return deserializer.fromJson(json.getAsJsonObject(sectionName));
 			return null;
-		} catch (Exception e) {
+		} catch (IOException | RuntimeException e) {
 			return null;
 		}
 	}

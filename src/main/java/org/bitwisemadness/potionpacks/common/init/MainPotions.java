@@ -1,11 +1,8 @@
 package org.bitwisemadness.potionpacks.common.init;
 
-import org.bitwisemadness.potionpacks.Env;
-import org.bitwisemadness.potionpacks.LogUtil;
-import org.bitwisemadness.potionpacks.PotionPacksMod;
-import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
-import org.bitwisemadness.potionpacks.common.packs.PotionPackManager.BrewingRecipeDefinition;
-import org.bitwisemadness.potionpacks.common.packs.PotionPackManager.ResolvedPotionFamily;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,10 +19,12 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
+import org.bitwisemadness.potionpacks.Env;
+import org.bitwisemadness.potionpacks.LogUtil;
+import org.bitwisemadness.potionpacks.PotionPacksMod;
+import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
+import org.bitwisemadness.potionpacks.common.packs.PotionPackManager.BrewingRecipeDefinition;
+import org.bitwisemadness.potionpacks.common.packs.PotionPackManager.ResolvedPotionFamily;
 
 public final class MainPotions {
 	public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, PotionPacksMod.MOD_ID);

@@ -1,18 +1,8 @@
 package org.bitwisemadness.potionpacks.common.packs;
 
-import org.bitwisemadness.potionpacks.Env;
-import org.bitwisemadness.potionpacks.LogUtil;
-import org.bitwisemadness.potionpacks.PotionPacksMod;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import lombok.Getter;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.effect.MobEffect;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +20,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import lombok.Getter;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.bitwisemadness.potionpacks.Env;
+import org.bitwisemadness.potionpacks.LogUtil;
+import org.bitwisemadness.potionpacks.PotionPacksMod;
 
 public final class PotionPackManager {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setLenient().create();
@@ -89,8 +88,15 @@ public final class PotionPackManager {
 			List<Path> zipPacks = new ArrayList<>();
 
 			try (var stream = Files.list(INSTANCE_PACK_DIR)) {
-				stream.sorted(Comparator.comparing(path -> path.getFileName().toString().toLowerCase(Locale.ROOT))).forEach(path -> {
-					String fileName = path.getFileName().toString().toLowerCase(Locale.ROOT);
+				stream.sorted(Comparator.comparing(path -> {
+					Path fileName = path.getFileName();
+					return (fileName == null ? "" : fileName.toString()).toLowerCase(Locale.ROOT);
+				})).forEach(path -> {
+					Path namePath = path.getFileName();
+					if (namePath == null) {
+						return;
+					}
+					String fileName = namePath.toString().toLowerCase(Locale.ROOT);
 					if (Files.isDirectory(path)) {
 						folderPacks.add(path);
 					} else if (fileName.endsWith(".zip") || fileName.endsWith(".jar")) {
@@ -264,22 +270,24 @@ public final class PotionPackManager {
 				}
 			}
 
-			for (VariantDefinition variant : family.variants) {
-				if (variant == null || variant.tier == null || variant.duration == null) {
-					continue;
+			if (family.variants != null) {
+				for (VariantDefinition variant : family.variants) {
+					if (variant == null || variant.tier == null || variant.duration == null) {
+						continue;
+					}
+					String tierId = normalizeId(variant.tier);
+					String durationId = normalizeId(variant.duration);
+					if (Boolean.FALSE.equals(variant.enabled)) {
+						continue;
+					}
+					TierDefinition tier = enabledTiers.get(tierId);
+					DurationDefinition duration = enabledDurations.get(durationId);
+					if (tier == null || duration == null) {
+						continue;
+					}
+					String registryName = sanitizeRegistryPath(family.id + "_" + tierId + "_" + durationId);
+					resolvedVariants.add(new ResolvedPotionVariant(family.id, registryName, tier, duration, variant.copy()));
 				}
-				String tierId = normalizeId(variant.tier);
-				String durationId = normalizeId(variant.duration);
-				if (Boolean.FALSE.equals(variant.enabled)) {
-					continue;
-				}
-				TierDefinition tier = enabledTiers.get(tierId);
-				DurationDefinition duration = enabledDurations.get(durationId);
-				if (tier == null || duration == null) {
-					continue;
-				}
-				String registryName = sanitizeRegistryPath(family.id + "_" + tierId + "_" + durationId);
-				resolvedVariants.add(new ResolvedPotionVariant(family.id, registryName, tier, duration, variant.copy()));
 			}
 
 			if (resolvedVariants.isEmpty()) {
