@@ -1,7 +1,7 @@
 package org.bitwisemadness.potionpacks.common.events;
 
-import org.bitwisemadness.potionpacks.common.init.MainPotions;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.bitwisemadness.potionpacks.common.init.MainPotions;
 
 public final class ModCommonEvents {
 	private ModCommonEvents() {}

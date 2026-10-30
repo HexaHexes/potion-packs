@@ -1,8 +1,5 @@
 package org.bitwisemadness.potionpacks.client.events;
 
-import org.bitwisemadness.potionpacks.PotionPacksMod;
-import org.bitwisemadness.potionpacks.client.resources.PotionLangPackResources;
-import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
@@ -11,6 +8,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.bitwisemadness.potionpacks.PotionPacksMod;
+import org.bitwisemadness.potionpacks.client.resources.PotionLangPackResources;
+import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
 
 @Mod.EventBusSubscriber(modid = PotionPacksMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ModClientEvents {

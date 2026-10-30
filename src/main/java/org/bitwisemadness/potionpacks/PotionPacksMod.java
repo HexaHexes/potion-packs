@@ -1,10 +1,10 @@
 package org.bitwisemadness.potionpacks;
 
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.bitwisemadness.potionpacks.common.events.ModCommonEvents;
 import org.bitwisemadness.potionpacks.common.init.MainPotions;
 import org.bitwisemadness.potionpacks.common.packs.PotionPackManager;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(PotionPacksMod.MOD_ID)
 public class PotionPacksMod {
