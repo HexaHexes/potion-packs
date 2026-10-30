@@ -18,6 +18,17 @@ workflow).
 
 ---
 
+## Maintenance mode
+
+This repo is in maintenance mode (owner decision, 2026-10-30): **it keeps up with
+the template but gets no new features of its own** until the mode lifts.
+
+- Included in every template wave - rulebook pulls, dependency pins, CI and
+  tooling updates, and new template content land here as they do everywhere.
+- No repo-initiated feature work while the mode lasts.
+
+Decision: `HexaHexes/neoforge-mod-template#52` (maintenance-mode note);
+tracking: `HexaHexes/neoforge-mod-template#60`.
 ## Notes
 
 - This repo predates the org's current workflow conventions: it ships no
